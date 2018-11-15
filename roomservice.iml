@@ -41,8 +41,6 @@
     <orderEntry type="library" name="Maven: org.jboss:jandex:2.0.5.Final" level="project" />
     <orderEntry type="library" name="Maven: io.thorntail:config-api:1.4.0" level="project" />
     <orderEntry type="library" name="Maven: io.thorntail:config-api-runtime:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.thorntail:logging:2.2.1.Final" level="project" />
     <orderEntry type="library" name="Maven: io.thorntail:security:2.2.1.Final" level="project" />
     <orderEntry type="library" name="Maven: io.thorntail:elytron:2.2.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:1.0.0.Final" level="project" />
@@ -155,7 +153,8 @@
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: io.thorntail:datasources:2.2.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.ironjacamar:ironjacamar-jdbc:1.4.6.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.5" level="project" />
+    <orderEntry type="library" name="Maven: io.thorntail:logging:2.2.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.197" level="project" />
   </component>
 </module>

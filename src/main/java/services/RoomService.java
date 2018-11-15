@@ -14,6 +14,8 @@ public class RoomService {
     private EntityManager em;
 
     public List<Room> getAll() {
-        return em.createNamedQuery("Employee.findAll", Room.class).getResultList();
+        return em.createNamedQuery("Room.findAll", Room.class).getResultList();
     }
+
+    public Room getRoom(int id) { return em.createNamedQuery("Room.findById", Room.class).setParameter("id", id).getSingleResult(); }
 }

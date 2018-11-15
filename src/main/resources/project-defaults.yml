@@ -1,3 +1,7 @@
+some:
+  string:
+    property: Hello World
+
 thorntail:
   datasources:
     data-sources:
