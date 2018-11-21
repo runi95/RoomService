@@ -14,7 +14,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private int ownedBy;
+    private String ownedBy;
 
     private String roomNumber;
 
@@ -27,8 +27,8 @@ public class Room {
     public String getRoomNumber() { return roomNumber; }
     public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
 
-    public int getOwnedBy() { return ownedBy; }
-    public void setOwnedBy(int ownedBy) { this.ownedBy = ownedBy;}
+    public String getOwnedBy() { return ownedBy; }
+    public void setOwnedBy(String ownedBy) { this.ownedBy = ownedBy;}
 
     public LocalDate getPublicEndDate() { return publicEndDate; }
     public void setPublicEndDate(LocalDate publicEndDate) { this.publicEndDate = publicEndDate; }
