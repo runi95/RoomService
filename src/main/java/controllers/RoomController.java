@@ -63,7 +63,7 @@ public class RoomController {
 
     @PUT
     @Path("setPublic/{id}")
-    public Room setRoomAsPublic(@PathParam("id") String id, @HeaderParam("email") String email, @HeaderParam("date") String date) {
+    public Room setRoomAsPublic(@PathParam("id") String id, @HeaderParam("email") String email, @HeaderParam("startDate") String startDate, @HeaderParam("endDate") String endDate) {
         Integer parsedID = null;
 
         try {
@@ -96,9 +96,14 @@ public class RoomController {
             return null;
         }
 
-        LocalDate localDate = LocalDate.parse(date);
+        LocalDate localStartDate = LocalDate.parse(startDate);
+        LocalDate localEndDate = LocalDate.parse(endDate);
 
-        room.setPublicEndDate(localDate);
+        if (localStartDate == null || localEndDate == null) {
+            return null;
+        }
+
+        room.makeRoomPublicFromTo(localStartDate, localEndDate);
         roomService.save(room);
 
         return room;

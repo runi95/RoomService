@@ -18,6 +18,8 @@ public class Room {
 
     private String roomNumber;
 
+    private LocalDate publicStartDate;
+
     private LocalDate publicEndDate;
 
     public int getId() {
@@ -30,10 +32,17 @@ public class Room {
     public String getOwnedBy() { return ownedBy; }
     public void setOwnedBy(String ownedBy) { this.ownedBy = ownedBy;}
 
+    public LocalDate getPublicStartDate() { return publicStartDate; }
+    public void setPublicStartDate(LocalDate publicStartDate) { this.publicStartDate = publicStartDate; }
+
     public LocalDate getPublicEndDate() { return publicEndDate; }
     public void setPublicEndDate(LocalDate publicEndDate) { this.publicEndDate = publicEndDate; }
 
     public void makeRoomPublicUntil(LocalDate endDate) {
+        setPublicEndDate(endDate);
+    }
+    public void makeRoomPublicFromTo(LocalDate startDate, LocalDate endDate) {
+        setPublicStartDate(startDate);
         setPublicEndDate(endDate);
     }
 }

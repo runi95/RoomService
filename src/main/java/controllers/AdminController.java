@@ -24,7 +24,7 @@ public class AdminController {
     private static final Logger LOG = Logger.getLogger(AdminController.class.getName());
 
     @POST
-    public Room createRoom(@HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("date") String date) {
+    public Room createRoom(@HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("startDate") String startDate, @HeaderParam("endDate") String endDate) {
         if (roomNumber == null || owner == null) {
             return null;
         }
@@ -33,8 +33,21 @@ public class AdminController {
         room.setRoomNumber(roomNumber);
         room.setOwnedBy(owner);
 
-        if (date != null) {
-            LocalDate localDate = LocalDate.parse(date);
+        if (startDate != null) {
+            LocalDate localDate = LocalDate.parse(startDate);
+            if (localDate == null) {
+                return null;
+            }
+
+            room.setPublicStartDate(localDate);
+        }
+
+        if (endDate != null) {
+            LocalDate localDate = LocalDate.parse(endDate);
+            if (localDate == null) {
+                return null;
+            }
+
             room.setPublicEndDate(localDate);
         }
 
@@ -45,7 +58,7 @@ public class AdminController {
 
     @PUT
     @Path("{id}")
-    public Room updateRoom(@PathParam("id") String id, @HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("date") String date) {
+    public Room updateRoom(@PathParam("id") String id, @HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("startDate") String startDate, @HeaderParam("endDate") String endDate) {
         Integer parsedID = null;
 
         try {
@@ -73,8 +86,21 @@ public class AdminController {
             room.setOwnedBy(owner);
         }
 
-        if (date != null) {
-            LocalDate localDate = LocalDate.parse(date);
+        if (startDate != null) {
+            LocalDate localDate = LocalDate.parse(startDate);
+            if (localDate == null) {
+                return null;
+            }
+
+            room.setPublicStartDate(localDate);
+        }
+
+        if (endDate != null) {
+            LocalDate localDate = LocalDate.parse(endDate);
+            if (localDate == null) {
+                return null;
+            }
+
             room.setPublicEndDate(localDate);
         }
 
