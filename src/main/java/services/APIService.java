@@ -1,6 +1,5 @@
 package services;
 
-import controllers.RoomController;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -18,7 +17,6 @@ import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 
 @ApplicationScoped
 public class APIService {
-
 
     @Inject
     @ConfigurationValue("api.auth.host")
