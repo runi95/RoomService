@@ -1,5 +1,6 @@
 package controllers;
 
+import models.PublicDate;
 import models.Room;
 import services.RoomService;
 
@@ -26,13 +27,12 @@ public class RoomController {
     private static final Logger LOG = Logger.getLogger(RoomController.class.getName());
 
     @GET
-    @Path("all")
     public List<Room> get() {
         return roomService.getAll();
     }
 
     @GET
-    @Path("isPublic/{id}")
+    @Path("{id}")
     public Room isRoomPublic(@PathParam("id") String id) {
         Integer parsedID = null;
 
@@ -62,8 +62,8 @@ public class RoomController {
     }
 
     @PUT
-    @Path("setPublic/{id}")
-    public Room setRoomAsPublic(@PathParam("id") String id, @HeaderParam("email") String email, @HeaderParam("startDate") String startDate, @HeaderParam("endDate") String endDate) {
+    @Path("{id}/addPublicDate")
+    public Room addPublicDate(@PathParam("id") String id, @HeaderParam("email") String email, @HeaderParam("startDate") String startDate, @HeaderParam("endDate") String endDate) {
         Integer parsedID = null;
 
         try {
@@ -103,7 +103,11 @@ public class RoomController {
             return null;
         }
 
-        room.makeRoomPublicFromTo(localStartDate, localEndDate);
+        PublicDate publicDate = new PublicDate();
+        publicDate.setPublicStartDate(localStartDate);
+        publicDate.setPublicEndDate(localEndDate);
+
+        room.addPublicDate(publicDate);
         roomService.save(room);
 
         return room;

@@ -1,7 +1,10 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -18,9 +21,14 @@ public class Room {
 
     private String roomNumber;
 
-    private LocalDate publicStartDate;
-
-    private LocalDate publicEndDate;
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "room",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<PublicDate> publicDates = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -30,19 +38,10 @@ public class Room {
     public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
 
     public String getOwnedBy() { return ownedBy; }
-    public void setOwnedBy(String ownedBy) { this.ownedBy = ownedBy;}
+    public void setOwnedBy(String ownedBy) { this.ownedBy = ownedBy; }
 
-    public LocalDate getPublicStartDate() { return publicStartDate; }
-    public void setPublicStartDate(LocalDate publicStartDate) { this.publicStartDate = publicStartDate; }
-
-    public LocalDate getPublicEndDate() { return publicEndDate; }
-    public void setPublicEndDate(LocalDate publicEndDate) { this.publicEndDate = publicEndDate; }
-
-    public void makeRoomPublicUntil(LocalDate endDate) {
-        setPublicEndDate(endDate);
-    }
-    public void makeRoomPublicFromTo(LocalDate startDate, LocalDate endDate) {
-        setPublicStartDate(startDate);
-        setPublicEndDate(endDate);
+    public void addPublicDate(PublicDate publicDate) {
+        publicDate.setRoom(this);
+        publicDates.add(publicDate);
     }
 }
