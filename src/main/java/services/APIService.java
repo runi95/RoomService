@@ -1,6 +1,6 @@
 package services;
 
-import controllers.IndexController;
+import controllers.RoomController;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -28,7 +28,7 @@ public class APIService {
     @ConfigurationValue("api.auth.endpoints.verify")
     private String API_AUTH_ENDPOINTS_VERIFY;
 
-    private static final Logger LOG = Logger.getLogger(IndexController.class.getName());
+    private static final Logger LOG = Logger.getLogger(APIService.class.getName());
 
     public boolean verifyToken(String email, String token) {
         Map<String, String> headers = new HashMap<>();
