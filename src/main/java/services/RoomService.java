@@ -20,4 +20,6 @@ public class RoomService {
     public Room getRoom(int id) { return em.createNamedQuery("Room.findById", Room.class).setParameter("id", id).getSingleResult(); }
 
     public void save(Room room) { em.persist(room); }
+
+    public void delete(Room room) { em.remove(room); }
 }

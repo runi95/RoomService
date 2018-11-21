@@ -24,7 +24,6 @@ public class AdminController {
     private static final Logger LOG = Logger.getLogger(AdminController.class.getName());
 
     @POST
-    @Path("create")
     public Room createRoom(@HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("date") String date) {
         if (roomNumber == null || owner == null) {
             return null;
@@ -45,7 +44,7 @@ public class AdminController {
     }
 
     @PUT
-    @Path("{id}/update")
+    @Path("{id}")
     public Room updateRoom(@PathParam("id") String id, @HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("date") String date) {
         Integer parsedID = null;
 
@@ -82,5 +81,32 @@ public class AdminController {
         roomService.save(room);
 
         return room;
+    }
+
+    @DELETE
+    @Path("{id}")
+    public boolean deleteRoom(@PathParam("id") String id) {
+        Integer parsedID = null;
+
+        try {
+            parsedID = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            LOG.warning("Could not parse " + id + " to int.");
+
+            // e.printStackTrace();
+        }
+
+        if (parsedID == null) {
+            return false;
+        }
+
+        Room room = roomService.getRoom(parsedID);
+        if (room == null) {
+            return false;
+        }
+
+        roomService.delete(room);
+
+        return true;
     }
 }
