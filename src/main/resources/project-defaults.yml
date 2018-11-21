@@ -1,8 +1,12 @@
-some:
-  string:
-    property: Hello World
+api:
+  auth:
+    host: http://localhost:8080
+    endpoints:
+      verify: /verify
 
 thorntail:
+  http:
+    port: 5000
   datasources:
     data-sources:
       MyDS:
