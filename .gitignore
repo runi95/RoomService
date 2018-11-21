@@ -2,3 +2,4 @@
 target/
 roomserviceDB.mv.db
 roomserviceDB.trace.db
+src/main/resources/META-INF/load.sql
