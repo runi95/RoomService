@@ -1,7 +1,9 @@
 package services;
 
+import models.PublicDate;
 import models.Room;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -22,4 +24,10 @@ public class RoomService {
     public void save(Room room) { em.persist(room); }
 
     public void delete(Room room) { em.remove(room); }
+
+    public boolean datesOverlap(Room room, LocalDate startDate, LocalDate endDate) {
+        List<PublicDate> publicDateList = em.createNamedQuery("PublicDate.checkDateRange", PublicDate.class).setParameter("roomId", room.getId()).setParameter("startDate", startDate).setParameter("endDate", endDate).getResultList();
+
+        return !publicDateList.isEmpty();
+    }
 }
