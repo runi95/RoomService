@@ -61,7 +61,7 @@ public class RoomController {
         return room;
     }
 
-    @POST
+    @PUT
     @Path("setPublic/{id}")
     public Room setRoomAsPublic(@PathParam("id") String id, @HeaderParam("email") String email, @HeaderParam("date") String date) {
         Integer parsedID = null;
