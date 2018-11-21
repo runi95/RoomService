@@ -1,7 +1,6 @@
 package controllers;
 
 import models.Room;
-import services.APIService;
 import services.RoomService;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -23,9 +22,6 @@ public class IndexController {
 
     @Inject
     private RoomService roomService;
-
-    @Inject
-    private APIService apiService;
 
     private static final Logger LOG = Logger.getLogger(IndexController.class.getName());
 
