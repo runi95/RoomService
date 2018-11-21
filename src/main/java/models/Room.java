@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @NamedQueries({
@@ -18,9 +19,9 @@ public class Room {
 
     private String roomNumber;
 
-    private LocalDate publicStartDate;
+    private LocalDateTime publicStartDate;
 
-    private LocalDate publicEndDate;
+    private LocalDateTime publicEndDate;
 
     public int getId() {
         return id;
@@ -32,16 +33,17 @@ public class Room {
     public String getOwnedBy() { return ownedBy; }
     public void setOwnedBy(String ownedBy) { this.ownedBy = ownedBy;}
 
-    public LocalDate getPublicStartDate() { return publicStartDate; }
-    public void setPublicStartDate(LocalDate publicStartDate) { this.publicStartDate = publicStartDate; }
+    public LocalDateTime getPublicStartDate() { return publicStartDate; }
+    public void setPublicStartDate(LocalDateTime publicStartDate) { this.publicStartDate = publicStartDate; }
 
-    public LocalDate getPublicEndDate() { return publicEndDate; }
-    public void setPublicEndDate(LocalDate publicEndDate) { this.publicEndDate = publicEndDate; }
+    public LocalDateTime getPublicEndDate() { return publicEndDate; }
+    public void setPublicEndDate(LocalDateTime publicEndDate) { this.publicEndDate = publicEndDate; }
 
-    public void makeRoomPublicUntil(LocalDate endDate) {
+    public void makeRoomPublicUntil(LocalDateTime endDate) {
         setPublicEndDate(endDate);
     }
-    public void makeRoomPublicFromTo(LocalDate startDate, LocalDate endDate) {
+
+    public void makeRoomPublicFromTo(LocalDateTime startDate, LocalDateTime endDate) {
         setPublicStartDate(startDate);
         setPublicEndDate(endDate);
     }

@@ -2,6 +2,7 @@ package controllers;
 
 import models.Room;
 import services.RoomService;
+import utils.Parser;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -96,8 +98,8 @@ public class RoomController {
             return null;
         }
 
-        LocalDate localStartDate = LocalDate.parse(startDate);
-        LocalDate localEndDate = LocalDate.parse(endDate);
+        LocalDateTime localStartDate = Parser.parseDate("start", startDate);
+        LocalDateTime localEndDate = Parser.parseDate("end", endDate);
 
         if (localStartDate == null || localEndDate == null) {
             return null;

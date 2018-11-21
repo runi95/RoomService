@@ -2,6 +2,7 @@ package controllers;
 
 import models.Room;
 import services.RoomService;
+import utils.Parser;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 @Path("/room/admin")
@@ -24,6 +26,8 @@ public class AdminController {
     private static final Logger LOG = Logger.getLogger(AdminController.class.getName());
 
     @POST
+    @Path("createRoom")
+    @Produces("application/json")
     public Room createRoom(@HeaderParam("roomNumber") String roomNumber, @HeaderParam("owner") String owner, @HeaderParam("startDate") String startDate, @HeaderParam("endDate") String endDate) {
         if (roomNumber == null || owner == null) {
             return null;
@@ -34,19 +38,19 @@ public class AdminController {
         room.setOwnedBy(owner);
 
         if (startDate != null) {
-            LocalDate localDate = LocalDate.parse(startDate);
-            if (localDate == null) {
-                return null;
-            }
+            LocalDateTime localDate = Parser.parseDate("start", startDate);
+//            if (localDate == null) {
+//                return null;
+//            }
 
             room.setPublicStartDate(localDate);
         }
 
         if (endDate != null) {
-            LocalDate localDate = LocalDate.parse(endDate);
-            if (localDate == null) {
-                return null;
-            }
+            LocalDateTime localDate = Parser.parseDate("end", endDate);
+//            if (localDate == null) {
+//                return null;
+//            }
 
             room.setPublicEndDate(localDate);
         }
@@ -87,7 +91,7 @@ public class AdminController {
         }
 
         if (startDate != null) {
-            LocalDate localDate = LocalDate.parse(startDate);
+            LocalDateTime localDate = LocalDateTime.parse(startDate);
             if (localDate == null) {
                 return null;
             }
@@ -96,7 +100,7 @@ public class AdminController {
         }
 
         if (endDate != null) {
-            LocalDate localDate = LocalDate.parse(endDate);
+            LocalDateTime localDate = Parser.parseDate("end", endDate);
             if (localDate == null) {
                 return null;
             }
