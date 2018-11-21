@@ -13,17 +13,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Path("/")
+@Path("/room")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @ApplicationScoped
 @Transactional
-public class IndexController {
+public class RoomController {
 
     @Inject
     private RoomService roomService;
 
-    private static final Logger LOG = Logger.getLogger(IndexController.class.getName());
+    private static final Logger LOG = Logger.getLogger(RoomController.class.getName());
 
     @GET
     @Path("all")
